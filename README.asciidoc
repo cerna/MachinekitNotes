@@ -1,0 +1,5 @@
+# MachinekitNotes
+
+This repository contains Cerna's personal notes and thoughts on the Machinekit project and it's codebase, mainly the Machinetalk and HALtalk functionality.
+
+**This is not a documentation for Machinekit in any meaning of the word.** The whole idea of this repository is to write down my delving attempts to understand the Machinekit codebase and create notes for my own personal needs.

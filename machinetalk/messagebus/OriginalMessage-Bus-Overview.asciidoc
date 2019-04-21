@@ -1,5 +1,9 @@
-This is snapshot of original documentation for Message Bus from Michael Haberler taken on 21. April 2019.
+[quote]
+____
+This is snapshot of the original documentation for Message Bus from Michael Haberler taken on 21. April 2019.
+
 Original link: https://github.com/mhaberler/messagebus/wiki/Message-Bus-Overview
+____
 
 = The RT Message Bus
 
@@ -124,14 +128,14 @@ The Message Bus scheme supports parallel invocation of actors: an injector may c
 
 The following diagram shows the major components and the conceptual interaction:
 
-image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/Machinetalk/MessageBus/messagebus-arch.png[architecture]
+image::http://raw.githubusercontent.com/cerna/MachinekitNotes/master/machinetalk/messagebus/messagebus-arch.png[architecture]
 
 == zeroMQ sockets and flows
 
 The following diagram shows how Message Bus can be implemented with
 zeroMQ sockets and threads:
 
-image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/Machinetalk/MessageBus/messagebus-zeromq.png[zeroMQ flows]
+image::http://raw.githubusercontent.com/cerna/MachinekitNotes/master/machinetalk/messagebus/messagebus-zeromq.png[zeroMQ flows]
 
 The two rail pairs are implemented in a message bus demon by two
 threads which proxy through XPUB sockets. The usage of XPUB
@@ -151,7 +155,7 @@ discernible disruption.
 
 The following example shows the flow of messages between an command injector and a responder as mediated by Message Bus:
 
-image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/Machinetalk/MessageBus/messagebus-simpleflow.png[Simple command/response flow]
+image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/machinetalk/messagebus/messagebus-simpleflow.png[Simple command/response flow]
 
 These is the sequence of events:
 
@@ -169,7 +173,7 @@ These is the sequence of events:
 
 Flow patterns are not limited to simple request/response schemes as decsribed in the previous section. For instance, and actor might determine that, in order to complete the job, it might need the service of one or several other actor. The following example shows such an interaction - *actor* invokes another entity *responder* to complete its job:
 
-image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/Machinetalk/MessageBus/messagebus-compoundflow.png[Compound command/response flow involving a sub-actor]
+image::https://raw.githubusercontent.com/cerna/MachinekitNotes/master/machinetalk/messagebus/messagebus-compoundflow.png[Compound command/response flow involving a sub-actor]
 
 These is the sequence of events:
 

@@ -1,0 +1,31 @@
+
+Machinetalk Overview
+====================
+:Author: Jakub Fišer
+:Date: 21. April 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+:prev_section:
+:next_section:
+
+Date: 21. April 2019
+
+Machinekit Machinetalk is __de facto__ standard for communication with, within or between Machinekit Instances.
+
+== Main problems
+* No documentation whatsoever
+* No software definition of how things should work
+* No active development (main author not active anymore)
+* No clearly defined hierarchical structure
+
+== Main parts
+* ZeroMQ
+* Protobuf
+* Zeroconf/DNS-SD/mDNS
+
+or
+
+* Transport layer
+* Serialization layer
+* Propagation layer
