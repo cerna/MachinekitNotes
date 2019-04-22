@@ -1,0 +1,29 @@
+= Google Protocol buffers
+:author: Jakub Fišer
+:date: 22. April 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+Protocol buffers are used as a way to serialize Machinetalk informations into messages. This way created byte sequence is then send as a packet by the way of ZeroMQ. On the recipient side is this packet, this byte sequence deserialized back to local object.
+
+This way it is possible to communicate with programs written in different languages and running on different types of hardware and architectures. For example the different size of default integer or endianess on arbitrary platforms becomes non-essential. 
+
+== Zero-copy and immutable buffers
+
+The current workflow of message passing is to create object representing the Container message, then create another object representing the actual type of wanted message which can contain another objects based on immediate needs. This way a whole tree structure representing data intended for send off is created. After this step the actual serialization function is called and this object tree is converted to byte array and stored into ZeroMQ message buffer. After this message is transported and received by the recipient, it needs to be deserialized back into object tree structure before any information can be read out.
+
+This approach has a great advatage in being memory space efficient, in other words the serialized buffer is relatively small. The disadvantage to this approach is that the whole buffer needs to be deserialized at once, even the parts which are not currently needed. The serialized buffer is also immutable. That basically means that to change any data contained in a message, it has to be deserialized, changes performed in the object tree and this tree then has to be serialized back to message buffer.
+
+In the case of theoretical scenario when component has to pass the received message to another component either without any change (for example if the component is in role of router) or make some small change to the message which would not be affecting the final size of the array buffer, the aforementioned process becomes expensive as it needs multiple memory copying and object allocation.
+
+Described situation should be solvable by using serialization technology which uses so-called zero-copy mechanism. In layman terms that means that as a first step, ZeroMQ message is created with the buffer allocated to predefined size. Then the intended information chunks are encoded directly into this buffer and as the last step the the whole message is send over ZeroMQ.
+
+Receiving this this message, all is needed is to use transformational getters to parse out required data. There is no need to convert the buffer into object based tree structure (againly, mainly because of the temporary state of the data). If the component would see the need to pass this data to some other component, it would just write neccessary information to pre-reseved space of the buffer and maybe change the address part of the buffer, then just send this same buffer over ZeroMQ with minimal copy operations.
+
+*(Not tested or verified to be true, just thinking out loud)*: In theory, using Flatbuffers to serialize messages insted of Protocol Buffers would faciliate the need to change the current status quo of using one big container message (because of the size of serialized buffer).
+
+However, it remains to be seen if changes described in this writeup would be of any real-world advantages over the current system.
+
+Based on discussion posted on https://groups.google.com/forum/#!topic/machinekit/RCLY1eS20B0[Machinekit Forum].
+

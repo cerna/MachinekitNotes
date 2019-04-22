@@ -1,17 +1,36 @@
 == MachinekitNotes
+:author: Jakub Fišer
+:date: 21. April 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+The official Machinekit documentation is freely available on http://www.machinekit.io/docs/[Machinekit website].
 
 This repository contains Cerna's personal notes and thoughts on the Machinekit project and it's codebase, mainly the Machinetalk and HALtalk functionality.
 
-**This is not a documentation for Machinekit in any meaning of the word.** The whole idea of this repository is to write down my delving attempts to understand the Machinekit codebase and create notes for my own personal needs.
+**This is not a documentation for Machinekit in any meaning of the word.** The whole idea of this repository is to write down my delving attempts to understand the Machinekit codebase and create notes for my own personal needs. To write down my thoughts as I go around my research.
+
+These research notes however are in fact meant as basic for future creation of Machinetalk documentation.
 
 == Glossary
 === Machinekit Instance
 Machinekit Instance (MKI) is every installation of Machinekit which is able to perform core operations. (For example Machinekit and Machinekit-HAL repositories.) Each MKI is uniquely identified by it's GUID (UUID).
 
 === Machinetalk Service
+Each Machinetalk Service (MKS) provide specific functions inside Machinekit Instance. Introduces singular communication channel (uni or bi-directinal). Is unique to each Machinekit instance and cannot be instanced. The same service can be reachable by multiple physical channels (TCP sockets, serial communication). Each MKS has it's own DNS-SD announcement, each different physical channel of Service has it's own DNS-SD announcement.
+
+=== Machinetalk Component
+Machinetalk component is logical abstraction above Machinetalk Services. It offers the functionality behind Services. (For example HALtalk, MessageBus or MKwrapper.)
 
 === Machinekit GUID (UUID)
-Machinekit GUID or UUID uniquely identifies Machinekit Instance in scope of system installation. It is used for addressing purposes.
+Machinekit GUID or UUID uniquely identifies Machinekit Instance in scope of system installation space. It is used for addressing purposes.
 
-=== System installation
-Space defined by networks on which MKIs communicate with each other, on which third party applications communicate with MKIs or networks where DNS-SD announcements are propagated.
+=== System installation space
+Space defined by networks on which MKIs communicate with each other, on which third party applications communicate with MKIs or networks where DNS-SD announcements are propagated. This could be inside electrical cabinet of the meachine or can span a whole factory.
+
+=== Machinekit-HAL
+Machinekit-HAL is a part of split of Machinekit project. It contains a majority of core functionality (HAL threads, Machinetalk, motion component and so on).
+
+=== Machinekit-CNC
+Machinekit-CNC is a part of split of Machinekit project. It contains rest of a original Machinekit functionality which was not included in Machinekit-HAL.

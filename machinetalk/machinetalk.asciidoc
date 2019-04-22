@@ -23,6 +23,22 @@ Machinekit Machinetalk is __de facto__ standard for communication with, within o
 * No active development (main author not active anymore)
 * No clearly defined hierarchical structure of API and building blocks
 
+=== No documentation available
+The Machinekit Machinetalk endeavour has no developer documentation or software contract agreement which would precisely and in clean terms illuminate what Machinetalk is and is not, what are the objectives trying to be solved and how it should be done.
+
+The absence of clear rules (defined in software agreement contract) means that every programmer can solve his problems in his own matter without any subsequent care about what others members of Machinekit community are developing.
+
+There are available sources of Machinetalk informations from original authors and other developers:
+
+* https://www.youtube.com/channel/UC3FVtrJ8U91iODq5motHMow/[Tom Tormach's Youtube channel]
+* https://github.com/mhaberler/asciidoc-sandbox/wiki[Michael Haberler's personal Github wiki]
+* https://github.com/mhaberler/messagebus/[Michael Haberler's Message Bus project on Github]
+* https://machinekoder.com/machinetalk-explained-part-1-introduction/[Alexander Roessler's Machinetalk tutorial series]
+* http://www.machinekit.io/docs/developing/qtquickvcp/[QtQuickVCP official tutorial]
+* https://github.com/machinekoder/machinetalk-doc[Machinetalk-Doc repository on Github]
+* https://github.com/machinekit/machinekit-hal/tree/master/src/machinetalk[Machinetalk source code in Machinekit-HAL repository on Github]
+* https://www.youtube.com/user/Strahlex/videos[Alexander Roessler's Youtube channel]
+
 == Building blocks
 * ZeroMQ
 * Protobuf
