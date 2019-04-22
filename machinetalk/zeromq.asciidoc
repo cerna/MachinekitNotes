@@ -1,0 +1,23 @@
+= ZeroMQ messaging library
+:author: Jakub Fišer
+:date: 22. April 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+Transport layer in all Machinetalk situations
+
+== Transport protocols
+So far Machinetalk uses as transport protocol either *TCP* or *IPC* based on setting _REMOTE_ flag in `MACHINEKIT.ini` file. Unfortunately, both protocols are used interchangeably with no clear definition as to in which situation use which protocol. That in the end means that all strenghts and weaknesses are ironed out to lowest common denominator.
+
+This situation is far from ideal as each transport protocol is suited for different kind of scenario. There is no support for *UDP*, probably because at the time of Machinetalk creation the __RADIO/DISH__ socket pair and pattern in ZeroMQ was not mature enought (or maybe did not even exist).
+
+There is clearly need to declaratively specify protocol usage situations. Not every Machinetalk Service of every Machinetalk Component has to be reachable by every mentioned protocol and one Service can be more suited to use different protocols in different situations. This issue needs further thought.
+
+As an example to illustrate this, let's look at the HALtalk remote functionality. In the case of two computers with installed Machinekit Instances directly connected by wired Ethernet on reserved networking interfaces, there is no need for any form of encryption as this subspace of System Installation Space is immune to any meaningful type of attack (typically these distances are very short in maximums of tens of meters, every attacker who will be physically able to reach this point will be able to reach the computer with running Machinekit Instance too). The packet loss on the wire is also very low. So the use of unreliable UDP in __non-queued__  configuration with maximum throughput with minimal time difference is warranted.
+
+(__Non-queued__ configuration is situation in which only the last received message is valid, in socket queue there is always only one message or no message at all. All messages which were delivered before current one but are yet to be read are discarted, i. e. on each delivery maximum of one message will be discarted. This pattern is useful for messages representing updated of real-world properties.)
+
+And in the scenario of remote GUI running on computer connected to __wider__ LAN shared with colleagues we will want communicate by HALtalk over TCP with CurveZMQ active, so nobody with Machinekit Client can connect to the machine and cause possibly fatal accident.
+
+There is also no need to use both *TCP* or *UDP* in case when the remote component is connecting to third party application which is separated from Machinekit but run on the same machine, when the *IPC* is the way to go.
