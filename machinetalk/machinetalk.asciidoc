@@ -1,6 +1,5 @@
 
-Machinetalk Overview
-====================
+= Machinetalk Overview
 :Author: Jakub Fišer
 :Date: 21. April 2019
 :Revision: 0.1
@@ -13,13 +12,18 @@ Date: 21. April 2019
 
 Machinekit Machinetalk is __de facto__ standard for communication with, within or between Machinekit Instances.
 
+== Machinetalk functions
+* Faciliate communication between components (mainly non-RT but with overreach to RT space) inside running Machinekit Instance
+* Faciliate communication between two or more running Machinekit Instances
+* Faciliate communication between Machinekit Instance and arbitrary application based on client-server model (more or less)
+
 == Main problems
 * No documentation whatsoever
 * No software definition of how things should work
 * No active development (main author not active anymore)
-* No clearly defined hierarchical structure
+* No clearly defined hierarchical structure of API and building blocks
 
-== Main parts
+== Building blocks
 * ZeroMQ
 * Protobuf
 * Zeroconf/DNS-SD/mDNS
@@ -29,3 +33,7 @@ or
 * Transport layer
 * Serialization layer
 * Propagation layer
+
+== Main objective of this writeup
+
+To define possible problems and propose possible solutions.
