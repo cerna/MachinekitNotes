@@ -13,6 +13,11 @@ This repository contains Cerna's personal notes and thoughts on the Machinekit p
 
 These research notes however are in fact meant as basic for future creation of Machinetalk documentation.
 
+== Discussion
+There is a room for discussing Machinetalk and Machinekit in general on Matrix IM network called link:++https://matrix.to/#/#machinekit:matrix.org++[#machinekit:matrix.org] which I created and monitor. I am also available for direct chat at link:++https://matrix.to/#/@cerna:matrix.org++[@cerna:matrix.org]. There is also a IRC channel on Freenode called link:++irc://freenode/#machinekit++[#machinekit] where I might be present.
+
+The official communication channel of the Machinekit project is Google Group list at link:++https://groups.google.com/forum/#!forum/machinekit++[https://groups.google.com/forum/#!forum/machinekit].
+
 == Glossary
 === Machinekit Instance
 Machinekit Instance (MKI) is every installation of Machinekit which is able to perform core operations. (For example Machinekit and Machinekit-HAL repositories.) Each MKI is uniquely identified by it's GUID (UUID).
