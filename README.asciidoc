@@ -18,6 +18,9 @@ There is a room for discussing Machinetalk and Machinekit in general on Matrix I
 
 The official communication channel of the Machinekit project is Google Group list at link:++https://groups.google.com/forum/#!forum/machinekit++[https://groups.google.com/forum/#!forum/machinekit].
 
+== Code
+Machinekit source code was recently split into two separate _git_ repositories: link:https://github.com/machinekit/machinekit-hal[*Machinekit-HAL*] and link:https://github.com/machinekit/machinekit-cnc[*Machinekit-CNC*]. Both are accessible on link:https://github.com[Github] under the link:https://github.com/machinekit[Machinekit organization]. There is also the now obsolete original link:https://github.com/machinekit/machinekit[*Machinekit*] repository.
+
 == Glossary
 === Machinekit Instance
 Machinekit Instance (MKI) is every installation of Machinekit which is able to perform core operations. (For example Machinekit and Machinekit-HAL repositories.) Each MKI is uniquely identified by it's GUID (UUID).
