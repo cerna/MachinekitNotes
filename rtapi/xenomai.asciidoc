@@ -1,0 +1,24 @@
+= Xenomai Cobalt and libXenomai
+:author: Jakub Fišer
+:date: 13. June 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+The Machinekit project gives the user a choice to select the Xenomai flavor of RTAPI. Unfortunatelly, this choice is limited only to the Xenomai version of 2.6.x or thereof. And the Xenomai 2.x development branch is now discontinued and should not be used anymore. Installing Machinekit over Xenomai is then now considered as a viable option only for few remaining users of Debian Jessie on BeagleBone Black platform. (Even though nothing is preventing installation of Xenomai patched kernel and library on _x86_ or _AMD64_ platform.) Of couse given the decoupling of distribution version and kernel version, it is possible to install kernel version 3.8 with Adeos pipeline and Xenomai on Debian Stretch or even Buster. But supporting old kernels is not a task anybody wants to do and as Machinekit is not currently heavily used in industrial setting and is considered more of bleeding edge, the task of support would lay solely on the person who for some reason needs it.
+
+All these reasons mean that Xenomai flavor in Machinekit is headed for obsolence and the actual date is probably very similar to the date when Debian Jessie will be archived. The current date for Jessie's EOL is set to June 30, 2020. This means that for Xenomai to survice this shift, there is a need for Support of Xenomai 3.0.x as a Machinekit RTAPI flavor. And with the use of the new link:https://github.com/machinekit/machinekit/pull/1462[RTAPI RT function API] this task becomes a lot easier.
+
+
+The schedule of needed changes in Machinekit-HAL is quite straightforward:
+
+* [ ] Deprecate current Xenomai flavor
+* [ ] Create new flavor called Xenomai2
+* [ ] Create new flavor called Xenomai3
+
+The actual implementation would mean creating two *_flavor_descriptor_t_* structures with function pointers to functions implementing core tasks for _rtapi_app_. There is also need to implement configuration switch based on output of _xeno-config_ (program distributed with Xenomai library) which would build one flavor or the other, but not both at the same time. (As the *libxenomai* library is quite different between versions and simple side by side installation of both versions is not possible.)
+
+The current source code of Machinekit contains some basic silhouettes of Xenomai 3 support from John Morris, but it was never actually functioning and is addressed by preprocessor directives. However, it is good starting point for the new implementation.
+
+== Problems with Xenomai 3.0.x
+The general idea behind Xenomai went through a quite drastic remake from version 2 and 3. And with it the whole attitude to development of application changed.

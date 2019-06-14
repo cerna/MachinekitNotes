@@ -1,0 +1,14 @@
+= Current status of RTAPI
+:author: Jakub Fišer
+:date: 13. June 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+One of the reasons why link:https://machinekit.io[Machinekit] separated from link:https://linuxcnc.org[LinuxCNC] was the demand for support of more RT systems over which the real-time part called RTAPI could run. Historically EMC and LinuxCNC would require link:https://rtai.org[RTAI], the RealTime Application Interface for Linux to serve it real-time needs. Because of several problematic aspects of the RTAI like small community,slow reaction to the Linux Kernel development and running of RT tasks in the kernel space there was a need for support of additional RT operating system linux extensions. As an alternative link:https://xenomai.org[Xenomai] and link:https://wiki.linuxfoundation.org/realtime/start[Preempt RT] were picked. Both are in active development with healthy community behind them and moreover both support so called user space real-time threads.
+
+However, as time went on the Xenomai support in Machinekit begin to lack behind the Preempt RT as the Preempt RT become mainline and there are official packages in Debian (and other distribution's) repositories with frequently updated patched kernels. Currently only the Xenomai version 2.x is supported in the Machinekit and this version was designated as an End-Of-Life some time ago by the Xenomai's development team. Current mainline version of Xenomai, the v3.0.x and soon to be 3.0.9, is not supported which in practical terms means that running Xenomai flavor of Machinekit's RTAPI over modern kernels of 4.x versioning is not possible. Ergo, the only viable RTAPI flavor currently supported is Preempt RT. Which shifted the focus from RTAI to Preempt RT as a sole provider of real-time capabilities.
+
+Fortunately, recent link:https://github.com/machinekit/machinekit/pull/1462[work] from John Morris (aka link:https//github.com/zultron[Zultron]) presented abstraction layer API for calling of RT related functions of different RTOSes from one RTAPI binary. This change tremendeously simplifies creation of new flavors over which Machinekit can run. All what is needed is to create several functions of pre-specified signatures which in turn implement the behavious over native RTOS's API. (The important limitation is that all of this must be done in the userspace. There are no kernel threads in Machinekit anymore.)
+
+One of side benefits of this approach is ability to _ad-hoc_ change the underlying RTOS on the fly with just rebooting of the machine. There is no longer a need to reinstall the Machinekit or choose another Run-In-Place (RIP for short) build. And the flavor capable of running will be choosen automatically at a runtime.
