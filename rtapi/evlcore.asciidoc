@@ -1,0 +1,10 @@
+= ECL Core and libEVL
+:author: Jakub Fišer
+:date: 13. June 2019
+:Revision: 0.1
+:awestruct-layout: base
+:showtitle:
+
+Philippe Gerum and link:https://www.linkedin.com/in/jorgealbertoramirezortiz[Jorge Ramirez-Ortiz] are creating new Linux based RTOS called EVL Core (pronounced as "evil core"). This new endeavour has aims of replacing the Adeos or I-PIPE pipeline of the link:https://xenomai.org[Xenomai] project. And is in itself another itineration of this product from the same author. It comes with it's own library for creating user *and* kernel space modules and applications called libEVL. This quite small library (nowhere near fully _POSIX_ compliant as a Xenomai _Copperplate_) seems to be an ideal match for Machinekit _rtapi_app_ application.
+
+One of the major advancement should be an ability to closely follow the mainline kernel, so having always quite a modern kernel should be possible. And also better performance and lower latency than currently reachable on Xenomai equipped platforms. That in turn translates to possibility of software stepping on parallel ports.
